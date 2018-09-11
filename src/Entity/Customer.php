@@ -20,8 +20,9 @@ class Customer
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
      * @Assert\NotBlank()
+     *
+     * @ORM\Column(type="string", length=64)
      */
     private $first_name;
 

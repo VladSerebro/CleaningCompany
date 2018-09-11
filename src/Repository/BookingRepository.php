@@ -19,6 +19,19 @@ class BookingRepository extends ServiceEntityRepository
         parent::__construct($registry, Booking::class);
     }
 
+    // TODO annotations
+    public function getPossibleBookings()
+    {
+        $now = new \DateTime('now');
+        $result = $this->createQueryBuilder('b')
+            ->andWhere('b.date > :now')
+            ->setParameter('now', $now)
+            ->getQuery()
+            ->getResult();
+
+        return $result;
+    }
+
 //    /**
 //     * @return Booking[] Returns an array of Booking objects
 //     */

@@ -20,13 +20,20 @@ class CustomerController extends AbstractController
         {
             $phone_number = $request->request->get('phone_number');
 
-            if(false) // if $phone_number is exist in db
+            $foundCustomer = $this->getDoctrine()
+                ->getRepository(Customer::class)
+                ->findOneBy(['phone_number' => $phone_number]);
+
+            $session = $this->get('session');
+
+            if($foundCustomer)
             {
-                //TODO return view create booking
+                $session->set('customer_id', $foundCustomer->getId());
+
+                return $this->redirectToRoute('select_params');
             }
             else
             {
-                $session = $this->get('session');
                 $session->set('phone_number', $phone_number);
 
                 return $this->redirectToRoute('new_customer');
@@ -40,7 +47,7 @@ class CustomerController extends AbstractController
     /**
      * @Route("/customer/new", methods={"GET","POST"}, name="new_customer")
      */
-    public function new(Request $request)
+    public function new(Request $request, ValidatorInterface $validator)
     {
         $session = $this->get('session');
         $phone_number = $session->get('phone_number');
@@ -54,12 +61,22 @@ class CustomerController extends AbstractController
             $customer->setLastName($params->get('last_name'));
             $customer->setPhoneNumber($phone_number);
 
+            $errors = $validator->validate($customer);
+            if(count($errors) > 0)
+            {
+                return $this->render('validation.html.twig', [
+                    'errors' => $errors,
+                    'entityName' => 'Customer',
+                    'back' => '/customer/new'
+                ]);
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($customer);
             $entityManager->flush();
 
-            // TODO return redirect to create booking
+            $session->set('customer_id', $customer->getId());
+            return $this->redirectToRoute('select_params');
         }
 
         return $this->render('customer/new.html.twig', [
