@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Entity\City;
 use App\Entity\Cleaner;
+use App\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,7 +33,7 @@ class BookingController extends AbstractController
 
         $cities = $this->getDoctrine()->getRepository(City::class)->findAll();
 
-        return $this->render('booking/create.html.twig', ['cities' => $cities]);
+        return $this->render('booking/selectParams.html.twig', ['cities' => $cities]);
     }
 
 
@@ -73,13 +74,60 @@ class BookingController extends AbstractController
             }
         }
 
-        $this->render('booking/selectCleaner.html.twig',[
-            'cleaners' => $freeCleaners
-        ]);
+        if(count($freeCleaners) > 0)
+        {
+            return $this->render('booking/selectCleaner.html.twig',[
+                'city' => $this->getDoctrine()->getRepository(City::class)->find($session->get('city_id')),
+                'date' => $session->get('date'),
+                'duration' => $session->get('duration'),
+                'cleaners' => $freeCleaners
+            ]);
+        }
+        else
+        {
+            //TODO: return 'no free cleaners'
+            return $this->render('booking/noFreeCleaners.html.twig');
+        }
 
 
 
-        exit;
+    }
+
+    /**
+     * @Route("/booking/create/finish", methods={"GET", "POST"}, name="create_booking")
+     */
+    public function create(Request $request)
+    {
+        $session = $this->get('session');
+
+        if($request->isMethod('post'))
+        {
+            $doctrine = $this->getDoctrine();
+
+            $cleaner_id = $request->request->get('cleaner');
+            $strDate = str_replace('T', ' ', $session->get('date'));
+
+            $date = \DateTime::createFromFormat('Y-m-d H:i', $strDate);
+            $cleaner = $doctrine->getRepository(Cleaner::class)->find($cleaner_id);
+            $customer = $doctrine->getRepository(Customer::class)->find($session->get('customer_id'));
+
+            $booking = new Booking();
+            $booking->setDate($date);
+            $booking->setDuration($session->get('duration'));
+            $booking->setCleaner($cleaner);
+            $booking->setCustomer($customer);
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($booking);
+            $entityManager->flush();
+
+            $session->clear();
+
+            return $this->render('booking/createSuccessfully.html.twig', [
+                'booking' => $booking
+            ]);
+        }
+        return $this->redirectToRoute('select_cleaner');
     }
 }
 

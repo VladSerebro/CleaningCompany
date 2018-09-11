@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create booking{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-4 offset-4">
+
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Warning!</div>
+                <div class="card-body">
+                    <h4 class="card-title">No appropriate cleaners</h4>
+                    <p class="card-text">All cleaners are busy. Please, go back and choose other parameters...</p>
+                    <a href="/booking/create/select_params"></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

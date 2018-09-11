@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Created successfully{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-4 offset-4">
+
+            <div class="card border-success mb-3" >
+                <div class="card-header">Booking for {{ booking.customer.firstName }} {{ booking.customer.lastName }}</div>
+                <div class="card-body">
+                    <b><h5 class="card-title">City</h5></b>
+                    <p class="card-text">{{ booking.cleaner.city.name }}</p>
+                    <h5 class="card-title">Date and time</h5>
+                    <p class="card-text">{{ booking.date|date('Y-m-d H-i') }}</p>
+                    <h5 class="card-title">Duration</h5>
+                    <p class="card-text">{{ booking.duration }} hours</p>
+                    <h5 class="card-title">Cleaner</h5>
+                    <p class="card-text">{{ booking.cleaner.firstName }} {{ booking.cleaner.lastName }}</p>
+                </div>
+            </div>
+
+            <a href="/" class="btn btn-primary btn-block">Home</a>
+
+        </div>
+    </div>
+
+{% endblock %}
