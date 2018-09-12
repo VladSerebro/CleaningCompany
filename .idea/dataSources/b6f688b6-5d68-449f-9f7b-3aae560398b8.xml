@@ -942,176 +942,227 @@
     <table id="238" parent="8" name="migration_versions">
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <column id="239" parent="234" name="id">
+    <table id="239" parent="8" name="user">
+      <Collation>utf8mb4_unicode_ci</Collation>
+    </table>
+    <column id="240" parent="234" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="240" parent="234" name="customer_id">
+    <column id="241" parent="234" name="customer_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="234" name="cleaner_id">
+    <column id="242" parent="234" name="cleaner_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="234" name="date">
+    <column id="243" parent="234" name="date">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="234" name="duration">
+    <column id="244" parent="234" name="duration">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="234" name="quality_score">
+    <column id="245" parent="234" name="quality_score">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="245" parent="234" name="IDX_E00CEDDE9395C3F3">
+    <index id="246" parent="234" name="IDX_E00CEDDE9395C3F3">
       <ColNames>customer_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="246" parent="234" name="IDX_E00CEDDEEDDDAE19">
+    <index id="247" parent="234" name="IDX_E00CEDDEEDDDAE19">
       <ColNames>cleaner_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="247" parent="234" name="PRIMARY">
+    <key id="248" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="248" parent="234" name="FK_E00CEDDE9395C3F3">
+    <foreign-key id="249" parent="234" name="FK_E00CEDDE9395C3F3">
       <ColNames>customer_id</ColNames>
       <RefSchemaName>smfclean.db</RefSchemaName>
       <RefTableName>customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="249" parent="234" name="FK_E00CEDDEEDDDAE19">
+    <foreign-key id="250" parent="234" name="FK_E00CEDDEEDDDAE19">
       <ColNames>cleaner_id</ColNames>
       <RefSchemaName>smfclean.db</RefSchemaName>
       <RefTableName>cleaner</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="250" parent="235" name="id">
+    <column id="251" parent="235" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="235" name="name">
+    <column id="252" parent="235" name="name">
       <Position>2</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="235" name="is_active">
+    <column id="253" parent="235" name="is_active">
       <Position>3</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="253" parent="235" name="PRIMARY">
+    <key id="254" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="254" parent="236" name="id">
+    <column id="255" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="236" name="city_id">
+    <column id="256" parent="236" name="city_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="236" name="first_name">
+    <column id="257" parent="236" name="first_name">
       <Position>3</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="236" name="last_name">
+    <column id="258" parent="236" name="last_name">
       <Position>4</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="236" name="quality_score">
+    <column id="259" parent="236" name="quality_score">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="259" parent="236" name="IDX_6E8447A48BAC62AF">
+    <index id="260" parent="236" name="IDX_6E8447A48BAC62AF">
       <ColNames>city_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="260" parent="236" name="PRIMARY">
+    <key id="261" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="261" parent="236" name="FK_6E8447A48BAC62AF">
+    <foreign-key id="262" parent="236" name="FK_6E8447A48BAC62AF">
       <ColNames>city_id</ColNames>
       <RefSchemaName>smfclean.db</RefSchemaName>
       <RefTableName>city</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="262" parent="237" name="id">
+    <column id="263" parent="237" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="237" name="first_name">
+    <column id="264" parent="237" name="first_name">
       <Position>2</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="237" name="last_name">
+    <column id="265" parent="237" name="last_name">
       <Position>3</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="237" name="phone_number">
+    <column id="266" parent="237" name="phone_number">
       <Position>4</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="266" parent="237" name="PRIMARY">
+    <key id="267" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="267" parent="238" name="version">
+    <column id="268" parent="238" name="version">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="268" parent="238" name="PRIMARY">
+    <key id="269" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
       <Primary>1</Primary>
+    </key>
+    <column id="270" parent="239" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="271" parent="239" name="username">
+      <Position>2</Position>
+      <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="272" parent="239" name="password">
+      <Position>3</Position>
+      <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="273" parent="239" name="email">
+      <Position>4</Position>
+      <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="274" parent="239" name="UNIQ_8D93D649F85E0677">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="275" parent="239" name="UNIQ_8D93D649E7927C74">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="276" parent="239" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="277" parent="239" name="UNIQ_8D93D649F85E0677">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>UNIQ_8D93D649F85E0677</UnderlyingIndexName>
+    </key>
+    <key id="278" parent="239" name="UNIQ_8D93D649E7927C74">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>UNIQ_8D93D649E7927C74</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>
