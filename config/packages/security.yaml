@@ -24,6 +24,7 @@ security:
                 login_path: login
                 check_path: login
                 provider: my_provider
+                default_target_path: /admin/dashboard
 
             logout:
                 path: /logout
