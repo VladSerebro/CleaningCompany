@@ -24,7 +24,7 @@ security:
                 login_path: login
                 check_path: login
                 provider: my_provider
-                default_target_path: /admin/dashboard
+                default_target_path: /admin/booking/index
 
             logout:
                 path: /logout

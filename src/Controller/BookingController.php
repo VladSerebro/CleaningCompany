@@ -8,6 +8,7 @@ use App\Entity\Cleaner;
 use App\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -35,7 +36,6 @@ class BookingController extends AbstractController
 
         return $this->render('booking/selectParams.html.twig', ['cities' => $cities]);
     }
-
 
     /**
      * @Route("/booking/create/select_cleaner", methods={"GET","POST"}, name="select_cleaner")
@@ -88,10 +88,12 @@ class BookingController extends AbstractController
             //TODO: return 'no free cleaners'
             return $this->render('booking/noFreeCleaners.html.twig');
         }
-
-
-
     }
+
+
+
+
+
 
     /**
      * @Route("/booking/create/finish", methods={"GET", "POST"}, name="create_booking")
@@ -129,6 +131,111 @@ class BookingController extends AbstractController
         }
         return $this->redirectToRoute('select_cleaner');
     }
+
+
+    //======= admin ========//
+
+
+    /**
+     * @Route("/admin/booking/index", name="admin_booking_index")
+     */
+    public function index()
+    {
+        $doctrine = $this->getDoctrine();
+
+        $bookings = $doctrine->getRepository(Booking::class)->findAllSorted();
+
+        return $this->render('booking/index.html.twig', [
+            'bookings' => $bookings,
+            'tableName' => 'All bookings'
+        ]);
+    }
+
+    /**
+     * @Route("/admin/booking/index/actual", name="admin_booking_index_actual")
+     */
+    public function indexActual()
+    {
+        $doctrine = $this->getDoctrine();
+
+        $bookings = $doctrine->getRepository(Booking::class)->getPossibleBookings();
+
+        return $this->render('booking/index.html.twig', [
+            'bookings' => $bookings,
+            'tableName' => 'Actual bookings'
+        ]);
+    }
+
+    /**
+     * @Route("/admin/booking/delete/{id}", methods={"DELETE"}, name="admin_booking_delete")
+     */
+    public function delete(Request $request, $id)
+    {
+        $booking = $this->getDoctrine()->getRepository(Booking::class)
+            ->find($id);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($booking);
+        $entityManager->flush();
+
+        $response = new Response();
+        $response->send();
+    }
+
+    /**
+     * @Route("/admin/booking/edit/{id}", methods={"GET", "POST"}, name="admin_booking_edit")
+     */
+    public function edit(Request $request, $id)
+    {
+
+
+        if($request->isMethod('POST'))
+        {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $booking = $entityManager->getRepository(Booking::class)->find($id);
+
+            $booking->setCleaner(
+                $this->getDoctrine()->getRepository(Cleaner::class)->find($request->request->get('cleaner'))
+            );
+
+            $strDate = $request->request->get('date');
+            $strDate = str_replace('T', ' ', $strDate);
+            dump($strDate);
+            $date = \DateTime::createFromFormat('Y-m-d H:i', $strDate);
+
+            if($date){
+                $booking->setDate($date);
+            }
+
+            $booking->setDuration($request->request->get('duration'));
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_booking_index');
+        }
+
+        $booking = $this->getDoctrine()->getRepository(Booking::class)->find($id);
+
+        $date = $booking->getDate()->format('Y-m-d H:i:s');
+        $date = str_replace(' ', 'T', $date);
+
+        $cleaners = $this->getDoctrine()->getRepository(Cleaner::class)
+            ->findBy([
+                'city' => $booking->getCleaner()->getCity()
+            ]);
+
+        return $this->render('booking/edit.html.twig', [
+            'booking'   => $booking,
+            'date'      => $date,
+            'cleaners'  => $cleaners
+        ]);
+    }
+
+
+
+
+
 }
 
 

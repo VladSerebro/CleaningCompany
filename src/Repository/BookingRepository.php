@@ -26,11 +26,19 @@ class BookingRepository extends ServiceEntityRepository
         $result = $this->createQueryBuilder('b')
             ->andWhere('b.date > :now')
             ->setParameter('now', $now)
+            ->orderBy('b.date', 'DESC')
             ->getQuery()
             ->getResult();
 
         return $result;
     }
+
+    // TODO annotations
+    public function findAllSorted()
+    {
+        return $this->findBy(array(), array('date' => 'DESC'));
+    }
+
 
 //    /**
 //     * @return Booking[] Returns an array of Booking objects

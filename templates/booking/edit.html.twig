@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        {{ include('inc/admin_sidebar.html.twig') }}
+
+        <div class=" col-md-4 offset-2">
+
+            <form action="/admin/booking/edit/{{ booking.id }}" method="POST" class="form-horizontal">
+                <div class="card border-primary">
+                    <div class="card-header">
+                        <p>Booking of {{ booking.customer.firstName }} {{ booking.customer.lastName }}</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            City: {{ booking.cleaner.city.name }}
+                        </h5>
+                        <div class="form-group">
+                            <label for="date" class="col-form-label">Date</label>
+                            <input type="datetime-local" class="form-control" name="date" value="{{ date }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duration" class="col-form-group">Duration</label>
+                            <input type="number" class="form-control" name="duration" value="{{ booking.duration }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cleaner" class="col-form-label">Cleaner</label>
+                            <select class="custom-select" name="cleaner">
+                                {% for cleaner in cleaners %}
+                                    <option value = "{{ cleaner.id }}">{{ cleaner.firstName }} {{ cleaner.lastName }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+            </form>
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

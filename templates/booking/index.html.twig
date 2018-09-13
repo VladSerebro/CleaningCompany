@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        {{ include('inc/admin_sidebar.html.twig') }}
+
+        <div class=" col-md-8">
+
+            <h4>{{ tableName }}</h4>
+
+            {#----------- TABLE -----------#}
+            <table id="bookings" class="table table-hover table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">Booking id</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Cleaner</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for b in bookings %}
+                    <tr>
+                        <th scope="row">{{ b.id }}</th>
+                        <td>{{ b.customer.firstName}} {{ b.customer.lastName }}</td>
+                        <td>{{ b.cleaner.firstName }} {{ b.cleaner.lastName }}</td>
+                        <td>{{ b.date|date('Y.m.d - H:i') }}</td>
+                        <td>{{ b.duration }}</td>
+                        <td>
+                            <a href="/admin/booking/edit/{{ b.id }}" class="btn btn-outline-info btn-sm">Edit</a>
+                            <a href="#" class="btn btn-outline-danger btn-sm" data-id="{{ b.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}
