@@ -19,6 +19,16 @@ class CityRepository extends ServiceEntityRepository
         parent::__construct($registry, City::class);
     }
 
+    public function resetActivity()
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'UPDATE App\Entity\City c
+                    SET c.is_active = 0'
+        )->execute();
+    }
+
+
 //    /**
 //     * @return City[] Returns an array of City objects
 //     */

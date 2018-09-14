@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-4 offset-4">
+
+            <form action="/admin/city/create" class="form-horizontal" method="POST">
+                <h2>Create new City</h2>
+
+                <div class="form-group">
+                    <label for="city" class="col-form-label">City</label>
+                    <input type="text" class="form-control" name="city">
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

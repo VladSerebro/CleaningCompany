@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        {{ include('inc/admin_sidebar.html.twig') }}
+
+        <div class=" col-md-8">
+            <div class="row my-sm-3">
+                <h5>Cities</h5>
+                <a href="/admin/city/create" class="btn btn-outline-primary btn-sm ml-auto">Add city</a>
+            </div>
+
+            <form action="/admin/city/index" method="POST" class="form-horizontal">
+                <table id="cities" class="table table-hover table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">is active</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for c in cities %}
+                        <tr>
+                            <th scope="row">{{ c.id }}</th>
+                            <td>{{ c.name }}</td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="checkbox" name="{{ c.id }}" value="{{ c.isActive }}"
+                                            {% if c.isActive %}
+                                                checked
+                                            {% endif %}
+                                    >
+                                </div>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-outline-danger btn-sm" data-id="{{ c.id }}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-primary btn-sm offset-2">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

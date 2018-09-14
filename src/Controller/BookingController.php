@@ -90,11 +90,6 @@ class BookingController extends AbstractController
         }
     }
 
-
-
-
-
-
     /**
      * @Route("/booking/create/finish", methods={"GET", "POST"}, name="create_booking")
      */
@@ -133,9 +128,7 @@ class BookingController extends AbstractController
     }
 
 
-    //======= admin ========//
-
-
+//======= admin ========//
     /**
      * @Route("/admin/booking/index", name="admin_booking_index")
      */
@@ -187,8 +180,6 @@ class BookingController extends AbstractController
      */
     public function edit(Request $request, $id)
     {
-
-
         if($request->isMethod('POST'))
         {
 
