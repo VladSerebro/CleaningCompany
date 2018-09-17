@@ -67,4 +67,33 @@ class CleanerController extends AbstractController
             'cities' => $cities
         ]);
     }
+
+    /**
+     * @Route("/admin/cleaner/edit/{id}", methods={"GET", "POST"}, name="admin_cleaner_edit")
+     */
+    public function edit(Request $request, $id)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $cleaner = $manager->getRepository(Cleaner::class)->find($id);
+
+        if($request->isMethod('POST'))
+        {
+            $cleaner->setFirstName($request->request->get('firstName'));
+            $cleaner->setLastName($request->request->get('lastName'));
+
+            $city = $manager->getRepository(City::class)->find($request->request->get('city'));
+            $cleaner->setCity($city);
+
+            $manager->flush();
+
+            return $this->redirectToRoute('admin_cleaner_index');
+        }
+
+        $cities = $manager->getRepository(City::class)->findAll();
+
+        return $this->render('cleaner/edit.html.twig', [
+            'cleaner' => $cleaner,
+            'cities' => $cities
+        ]);
+    }
 }

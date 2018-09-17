@@ -32,6 +32,7 @@
                         <td>{{ cleaner.lastName }}</td>
                         <td>{{ cleaner.city.name }}</td>
                         <td>
+                            <a href="/admin/cleaner/edit/{{ cleaner.id }}" class="btn btn-outline-info btn-sm">Edit</a>
                             <a href="#" class="btn btn-outline-danger btn-sm" data-id="{{ cleaner.id }}">Delete</a>
                         </td>
 

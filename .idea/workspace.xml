@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="756b5ba2-14fc-42ff-8fbd-6ef4faf32bd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/customer/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/cleaner/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BookingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CleanerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CleanerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/admin_sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/admin_sidebar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cleaner/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cleaner/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +43,20 @@
         <item name="smfclean.db@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="smfclean.db: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="smfclean.db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="smfclean.db: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="city: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="smfclean.db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="smfclean.db: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="cleaner: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -132,43 +145,43 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cell" value="119" />
+          <entry key="cell" value="121" />
           <entry key="js" value="2306" />
-          <entry key="php" value="6519" />
-          <entry key="twig" value="3596" />
+          <entry key="php" value="6928" />
+          <entry key="twig" value="3714" />
           <entry key="yaml" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="2306" />
-          <entry key="PHP" value="6518" />
+          <entry key="PHP" value="6927" />
           <entry key="SQL" value="1" />
-          <entry key="Scratch" value="119" />
-          <entry key="Twig" value="3596" />
+          <entry key="Scratch" value="121" />
+          <entry key="Twig" value="3714" />
           <entry key="YAML" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="booking" value="8" />
-          <entry key="city" value="5" />
-          <entry key="cleaner" value="4" />
+          <entry key="city" value="6" />
+          <entry key="cleaner" value="5" />
           <entry key="customer" value="5" />
           <entry key="js" value="4" />
-          <entry key="php" value="26" />
+          <entry key="php" value="27" />
           <entry key="ts" value="2" />
-          <entry key="twig" value="50" />
+          <entry key="twig" value="55" />
           <entry key="user" value="1" />
           <entry key="yaml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Database Element" value="23" />
+          <entry key="Database Element" value="25" />
           <entry key="JavaScript" value="4" />
-          <entry key="PHP" value="26" />
-          <entry key="Twig" value="50" />
+          <entry key="PHP" value="27" />
+          <entry key="Twig" value="55" />
           <entry key="TypeScript" value="2" />
           <entry key="YAML" value="3" />
         </counts>
@@ -178,19 +191,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/CustomerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="163" selection-start-line="163" selection-end-line="163" />
+            <state relative-caret-position="630">
+              <caret line="157" selection-start-line="157" selection-end-line="157" />
               <folding>
                 <element signature="e#34#58#0#PHP" expanded="true" />
               </folding>
@@ -211,28 +215,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/customer/edit.html.twig">
+        <entry file="file://$PROJECT_DIR$/templates/cleaner/edit.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+            <state relative-caret-position="287">
+              <caret line="28" column="84" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="84" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/city/create.html.twig">
+        <entry file="file://$PROJECT_DIR$/templates/booking/edit.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Controller/CleanerController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
+              <folding>
+                <element signature="e#34#54#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/booking/selectParams.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/customer/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="69" selection-start-line="34" selection-start-column="69" selection-end-line="34" selection-end-column="69" />
+              <caret line="24" column="22" selection-start-line="17" selection-start-column="16" selection-end-line="24" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -283,16 +299,17 @@
         <option value="$PROJECT_DIR$/templates/city/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/city/create.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/CityController.php" />
-        <option value="$PROJECT_DIR$/templates/cleaner/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/cleaner/create.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/CleanerController.php" />
         <option value="$PROJECT_DIR$/templates/inc/admin_sidebar.html.twig" />
         <option value="$PROJECT_DIR$/templates/customer/create.html.twig" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
         <option value="$PROJECT_DIR$/templates/customer/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/customer/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/BookingController.php" />
+        <option value="$PROJECT_DIR$/templates/cleaner/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/cleaner/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/CustomerController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/CleanerController.php" />
       </list>
     </option>
   </component>
@@ -522,12 +539,12 @@
       <workItem from="1536306799952" duration="22675000" />
       <workItem from="1536566950713" duration="47574000" />
       <workItem from="1536743867931" duration="11234000" />
-      <workItem from="1536820334376" duration="53384000" />
+      <workItem from="1536820334376" duration="55027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134867000" />
+    <option name="totallyTimeSpent" value="136510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -562,13 +579,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://b6f688b6-5d68-449f-9f7b-3aae560398b8/schema/smfclean.db/table/app_users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://b6f688b6-5d68-449f-9f7b-3aae560398b8/schema/smfclean.db/table/migration_versions">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -776,34 +786,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cleaner/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/inc/admin_sidebar.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="70" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/booking/selectParams.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/CleanerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="39" column="5" selection-start-line="25" selection-start-column="4" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <element signature="e#34#54#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -841,21 +827,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://b6f688b6-5d68-449f-9f7b-3aae560398b8/schema/smfclean.db/table/cleaner">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://b6f688b6-5d68-449f-9f7b-3aae560398b8/schema/smfclean.db/table/booking">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://b6f688b6-5d68-449f-9f7b-3aae560398b8/schema/smfclean.db/table/city">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -869,13 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/customer/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="69" selection-start-line="34" selection-start-column="69" selection-end-line="34" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -883,17 +848,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/booking/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="102" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/booking/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="113" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/customer/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="121" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="121" />
         </state>
       </provider>
     </entry>
@@ -906,8 +871,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/customer/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+        <state>
+          <caret selection-end-line="50" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/cleaner/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="67" selection-start-line="34" selection-start-column="67" selection-end-line="34" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/booking/selectParams.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="22" selection-start-line="17" selection-start-column="16" selection-end-line="24" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/booking/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b6f688b6-5d68-449f-9f7b-3aae560398b8/schema/smfclean.db/table/cleaner">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b6f688b6-5d68-449f-9f7b-3aae560398b8/schema/smfclean.db/table/city">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/CustomerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
+          <folding>
+            <element signature="e#34#58#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -921,12 +931,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/CustomerController.php">
+    <entry file="file://$PROJECT_DIR$/templates/cleaner/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="163" selection-start-line="163" selection-end-line="163" />
+        <state relative-caret-position="287">
+          <caret line="28" column="84" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/CleanerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
           <folding>
-            <element signature="e#34#58#0#PHP" expanded="true" />
+            <element signature="e#34#54#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

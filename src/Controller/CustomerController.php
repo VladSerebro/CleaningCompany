@@ -155,7 +155,6 @@ class CustomerController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('admin_customer_index');
-
         }
 
         return $this->render('customer/edit.html.twig', [
