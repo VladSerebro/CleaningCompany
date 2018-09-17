@@ -183,7 +183,6 @@ class BookingController extends AbstractController
     {
         if($request->isMethod('POST'))
         {
-
             $entityManager = $this->getDoctrine()->getManager();
             $booking = $entityManager->getRepository(Booking::class)->find($id);
 
@@ -223,37 +222,4 @@ class BookingController extends AbstractController
             'cleaners'  => $cleaners
         ]);
     }
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

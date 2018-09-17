@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        {{ include('inc/admin_sidebar.html.twig') }}
+
+        <div class=" col-md-4 offset-2">
+
+            <form action="/admin/customer/edit/{{ customer.id }}" method="POST" class="form-horizontal">
+                <div class="card border-primary">
+                    <div class="card-header">
+                        <p>Customer: {{ customer.firstName }} {{ customer.lastName }}</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Edit:
+                        </h5>
+
+                        <div class="form-group">
+                            <label for="firstName" class="col-form-label">First name</label>
+                            <input type="text" class="form-control" name="firstName" value="{{ customer.firstName }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName" class="col-form-label">Last name</label>
+                            <input type="text" class="form-control" name="lastName" value="{{ customer.lastName }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber" class="col-form-label">Phone number</label>
+                            <input type="text" class="form-control" name="phoneNumber" value="{{ customer.phoneNumber }}">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

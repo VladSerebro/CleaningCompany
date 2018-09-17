@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        {{ include('inc/admin_sidebar.html.twig') }}
+
+        <div class=" col-md-6">
+            <div class="row my-sm-3">
+                <h5>Customers</h5>
+                <a href="/admin/customer/create" class="btn btn-outline-primary btn-sm ml-auto">Add Customer</a>
+            </div>
+
+            <table id="customers" class="table table-hover table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                    <tr>
+                        <th scope="row">{{ customer.id }}</th>
+                        <td>{{ customer.firstName }}</td>
+                        <td>{{ customer.lastName }}</td>
+                        <td>{{ customer.phoneNumber }}</td>
+                        <td>
+                            <a href="/admin/customer/edit/{{ customer.id }}" class="btn btn-outline-info btn-sm">Edit</a>
+                            <a href="#" class="btn btn-outline-danger btn-sm" data-id="{{ customer.id }}">Delete</a>
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

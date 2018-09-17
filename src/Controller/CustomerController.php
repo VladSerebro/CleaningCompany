@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -84,4 +85,81 @@ class CustomerController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/customer/index", methods={"GET"}, name="admin_customer_index")
+     */
+    public function index()
+    {
+        $customers = $this->getDoctrine()->getRepository(Customer::class)
+            ->findAll();
+
+        return $this->render('customer/index.html.twig', [
+            'customers' => $customers
+        ]);
+    }
+
+    /**
+     * @Route("/admin/customer/delete/{id}", methods={"DELETE"}, name="admin_customer_delete")
+     */
+    public function delete($id)
+    {
+        $customer = $this->getDoctrine()->getRepository(Customer::class)
+            ->find($id);
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($customer);
+        $manager->flush();
+
+        $res = new Response();
+        $res->send();
+    }
+
+    /**
+     * @Route("/admin/customer/create", methods={"GET", "POST"}, name="admin_customer_create")
+     */
+    public function create(Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
+            $customer = new Customer();
+            $customer->setFirstName($request->request->get('firstName'));
+            $customer->setLastName($request->request->get('lastName'));
+            $customer->setPhoneNumber($request->request->get('phoneNumber'));
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($customer);
+            $manager->flush();
+
+            return $this->redirectToRoute('admin_customer_index');
+        }
+
+        return $this->render('customer/create.html.twig');
+    }
+
+    /**
+     * @Route("/admin/customer/edit/{id}", methods={"GET", "POST"}, name="admin_customer_edit")
+     */
+    public function edit(Request $request, $id)
+    {
+        $customer = $this->getDoctrine()->getRepository(Customer::class)->find($id);
+
+        if($request->isMethod('POST'))
+        {
+            $manager = $this->getDoctrine()->getManager();
+            $customer = $manager->getRepository(Customer::class)->find($id);
+
+            $customer->setFirstName($request->request->get('firstName'));
+            $customer->setLastName($request->request->get('lastName'));
+            $customer->setPhoneNumber($request->request->get('phoneNumber'));
+
+            $manager->flush();
+
+            return $this->redirectToRoute('admin_customer_index');
+
+        }
+
+        return $this->render('customer/edit.html.twig', [
+            'customer' => $customer
+        ]);
+    }
 }
