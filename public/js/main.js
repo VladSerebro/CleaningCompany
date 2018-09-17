@@ -49,6 +49,28 @@ $(document).ready(function(){
             }
         });
     }
+
+    // delete cleaner
+    const cleaners = document.getElementById('cleaners');
+
+    if(cleaners)
+    {
+        cleaners.addEventListener('click', e => {
+            if(e.target.className === 'btn btn-outline-danger btn-sm')
+            {
+                const id = e.target.getAttribute('data-id');
+
+                fetch(`/admin/cleaner/delete/${id}`, {
+                    method: 'DELETE'
+                }).then((res) => {
+                    console.log(res);
+                    window.location.reload()
+                }).catch((err) => {
+                    console.error(err);
+                })
+            }
+        });
+    }
 });
 
 

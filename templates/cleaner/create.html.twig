@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create cleaner{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-4 offset-4">
+
+            <form action="/admin/cleaner/create" method="POST" class="form-horizontal">
+                <h2>Create new cleaner</h2>
+
+                <div class="form-group">
+                    <label for="firstName" class="col-form-label">First name</label>
+                    <input type="text" class="form-control" name="firstName">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName" class="col-form-label">Last name</label>
+                    <input type="text" class="form-control" name="lastName">
+                </div>
+
+                <div class="form-group">
+                    <label for="city" class="col-form-label">City</label>
+                    <select name="city" class="custom-select">
+                        {% for city in cities %}
+                            <option value="{{ city.id }}">{{ city.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

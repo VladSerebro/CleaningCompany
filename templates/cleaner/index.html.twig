@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        {{ include('inc/admin_sidebar.html.twig') }}
+
+        <div class=" col-md-6">
+            <div class="row my-sm-3">
+                <h5>Cleaners</h5>
+                <a href="/admin/cleaner/create" class="btn btn-outline-primary btn-sm ml-auto">Add cleaner</a>
+            </div>
+
+            <table id="cleaners" class="table table-hover table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cleaner in cleaners %}
+                    <tr>
+                        <th scope="row">{{ cleaner.id }}</th>
+                        <td>{{ cleaner.firstName }}</td>
+                        <td>{{ cleaner.lastName }}</td>
+                        <td>{{ cleaner.city.name }}</td>
+                        <td>
+                            <a href="#" class="btn btn-outline-danger btn-sm" data-id="{{ cleaner.id }}">Delete</a>
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

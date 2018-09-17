@@ -32,7 +32,8 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('select_cleaner');
         }
 
-        $cities = $this->getDoctrine()->getRepository(City::class)->findAll();
+        $cities = $this->getDoctrine()->getRepository(City::class)
+            ->findBy(['is_active' => '1']);
 
         return $this->render('booking/selectParams.html.twig', ['cities' => $cities]);
     }
