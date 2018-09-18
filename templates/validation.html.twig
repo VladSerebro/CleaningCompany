@@ -4,16 +4,14 @@
 
 {% block body %}
 
-    <div class="alert alert-dismissible alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4 class="alert-heading">{{ entityName }}!</h4>
-        <ul>
-            {% for error in errors %}
-                <li class="mb-0">{{ error.message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
     <div class="container">
+        <div class="alert alert-dismissible alert-warning">
+            <ul>
+                {% for error in errors %}
+                    <li class="mb-0">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
         <a href="{{ back }}" class="btn btn-primary">Back</a>
     </div>
 

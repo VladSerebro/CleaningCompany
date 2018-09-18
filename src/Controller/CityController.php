@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CityController extends AbstractController
 {
@@ -63,7 +64,7 @@ class CityController extends AbstractController
     /**
      * @Route("/admin/city/create", methods={"GET", "POST"}, name="admin_cities_create")
      */
-    public function add(Request $request)
+    public function add(Request $request, ValidatorInterface $validator)
     {
         if($request->isMethod('POST'))
         {
@@ -73,13 +74,40 @@ class CityController extends AbstractController
             $city->setName($cityName);
             $city->setIsActive(0);
 
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($city);
-            $manager->flush();
+            $arr_errors = $validator->validate($city);
+            if (count($arr_errors) > 0)
+            {
+                return $this->showDanger($arr_errors);
+            }
+            else
+            {
+                $manager = $this->getDoctrine()->getManager();
+                $manager->persist($city);
+                $manager->flush();
 
-            return $this->redirectToRoute('admin_cities_index');
+                return $this->redirectToRoute('admin_cities_index');
+            }
         }
 
         return $this->render('city/create.html.twig');
+    }
+
+    /**
+     * @param array of errors
+     *
+     * @return Response
+     */
+    private function showDanger($arr_errors)
+    {
+        $errors = [];
+
+        foreach($arr_errors as $error)
+        {
+            $errors[] = strtoupper($error->getPropertyPath()) . ' => ' . $error->getMessage();
+        }
+        return $this->render('validation.html.twig', [
+            'errors' => $errors,
+            'back' => '/admin/city/create'
+        ]);
     }
 }

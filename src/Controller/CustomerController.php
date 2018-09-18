@@ -15,7 +15,7 @@ class CustomerController extends AbstractController
     /**
      * @Route("/customer/identify", methods={"GET","POST"}, name="identify_customer")
      */
-    public function identify(Request $request)
+    public function identify(Request $request, ValidatorInterface $validator)
     {
         if($request->isMethod('POST'))
         {
@@ -62,22 +62,20 @@ class CustomerController extends AbstractController
             $customer->setLastName($params->get('last_name'));
             $customer->setPhoneNumber($phone_number);
 
-            $errors = $validator->validate($customer);
-            if(count($errors) > 0)
+            $arr_errors = $validator->validate($customer);
+            if (count($arr_errors) > 0)
             {
-                return $this->render('validation.html.twig', [
-                    'errors' => $errors,
-                    'entityName' => 'Customer',
-                    'back' => '/customer/new'
-                ]);
+                return $this->showDanger($arr_errors, '/customer/new');
             }
+            else
+            {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($customer);
+                $entityManager->flush();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($customer);
-            $entityManager->flush();
-
-            $session->set('customer_id', $customer->getId());
-            return $this->redirectToRoute('select_params');
+                $session->set('customer_id', $customer->getId());
+                return $this->redirectToRoute('select_params');
+            }
         }
 
         return $this->render('customer/new.html.twig', [
@@ -117,7 +115,7 @@ class CustomerController extends AbstractController
     /**
      * @Route("/admin/customer/create", methods={"GET", "POST"}, name="admin_customer_create")
      */
-    public function create(Request $request)
+    public function create(Request $request, ValidatorInterface $validator)
     {
         if($request->isMethod('POST'))
         {
@@ -126,11 +124,19 @@ class CustomerController extends AbstractController
             $customer->setLastName($request->request->get('lastName'));
             $customer->setPhoneNumber($request->request->get('phoneNumber'));
 
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($customer);
-            $manager->flush();
+            $arr_errors = $validator->validate($customer);
+            if (count($arr_errors) > 0)
+            {
+                return $this->showDanger($arr_errors, '/admin/customer/create');
+            }
+            else
+            {
+                $manager = $this->getDoctrine()->getManager();
+                $manager->persist($customer);
+                $manager->flush();
 
-            return $this->redirectToRoute('admin_customer_index');
+                return $this->redirectToRoute('admin_customer_index');
+            }
         }
 
         return $this->render('customer/create.html.twig');
@@ -139,7 +145,7 @@ class CustomerController extends AbstractController
     /**
      * @Route("/admin/customer/edit/{id}", methods={"GET", "POST"}, name="admin_customer_edit")
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request, ValidatorInterface $validator, $id)
     {
         $customer = $this->getDoctrine()->getRepository(Customer::class)->find($id);
 
@@ -152,13 +158,39 @@ class CustomerController extends AbstractController
             $customer->setLastName($request->request->get('lastName'));
             $customer->setPhoneNumber($request->request->get('phoneNumber'));
 
-            $manager->flush();
-
-            return $this->redirectToRoute('admin_customer_index');
+            $arr_errors = $validator->validate($customer);
+            if (count($arr_errors) > 0)
+            {
+                return $this->showDanger($arr_errors, '/admin/customer/edit/' . $id);
+            }
+            else
+            {
+                $manager->flush();
+                return $this->redirectToRoute('admin_customer_index');
+            }
         }
 
         return $this->render('customer/edit.html.twig', [
             'customer' => $customer
+        ]);
+    }
+
+    /**
+     * @param array of errors
+     *
+     * @return Response
+     */
+    private function showDanger($arr_errors, $back)
+    {
+        $errors = [];
+
+        foreach($arr_errors as $error)
+        {
+            $errors[] = strtoupper($error->getPropertyPath()) . ' => ' . $error->getMessage();
+        }
+        return $this->render('validation.html.twig', [
+            'errors' => $errors,
+            'back' => $back
         ]);
     }
 }
