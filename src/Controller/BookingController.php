@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 class BookingController extends AbstractController
@@ -21,13 +22,27 @@ class BookingController extends AbstractController
     {
         if($request->isMethod('POST'))
         {
-            $session = $this->get('session');
-
             $params = $request->request;
+
+            // validation (not blank)
+            $errors = [];
+            foreach($params as $key => $value)
+            {
+                if(empty($value))
+                    $errors[] = strtoupper($key) .  " => This value should not be blank";
+            }
+            if(count($errors) > 0)
+                return $this->render('validation.html.twig', [
+                    'errors' => $errors,
+                    'back' => '/booking/create/select_params'
+                ]);
+
+            $session = $this->get('session');
 
             $session->set('date', $params->get('date'));
             $session->set('city_id', $params->get('city'));
             $session->set('duration', $params->get('duration'));
+
 
             return $this->redirectToRoute('select_cleaner');
         }
@@ -86,7 +101,6 @@ class BookingController extends AbstractController
         }
         else
         {
-            //TODO: return 'no free cleaners'
             return $this->render('booking/noFreeCleaners.html.twig');
         }
     }
@@ -192,7 +206,6 @@ class BookingController extends AbstractController
 
             $strDate = $request->request->get('date');
             $strDate = str_replace('T', ' ', $strDate);
-            dump($strDate);
             $date = \DateTime::createFromFormat('Y-m-d H:i', $strDate);
 
             if($date){

@@ -14,12 +14,18 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class BookingRepository extends ServiceEntityRepository
 {
+    /**
+     * BookingRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Booking::class);
     }
 
-    // TODO annotations
+    /**
+     * @return mixed
+     */
     public function getPossibleBookings()
     {
         $now = new \DateTime('now');
@@ -33,7 +39,9 @@ class BookingRepository extends ServiceEntityRepository
         return $result;
     }
 
-    // TODO annotations
+    /**
+     * @return Booking[]
+     */
     public function findAllSorted()
     {
         return $this->findBy(array(), array('date' => 'DESC'));

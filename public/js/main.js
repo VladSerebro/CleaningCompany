@@ -13,7 +13,6 @@ $(document).ready(function(){
         deleteEntity(cleaners, '/admin/cleaner/delete');
     if(customers)
         deleteEntity(customers, '/admin/customer/delete');
-
 });
 
 function deleteEntity($table, $path)

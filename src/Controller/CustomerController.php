@@ -15,7 +15,7 @@ class CustomerController extends AbstractController
     /**
      * @Route("/customer/identify", methods={"GET","POST"}, name="identify_customer")
      */
-    public function identify(Request $request, ValidatorInterface $validator)
+    public function identify(Request $request)
     {
         if($request->isMethod('POST'))
         {
