@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
@@ -18,23 +19,27 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $customer;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Cleaner", inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $cleaner;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $duration;
 
@@ -89,7 +94,7 @@ class Booking
         return $this->duration;
     }
 
-    public function setDuration(int $duration): self
+    public function setDuration($duration): self
     {
         $this->duration = $duration;
 

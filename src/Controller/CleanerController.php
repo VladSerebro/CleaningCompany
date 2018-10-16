@@ -59,7 +59,7 @@ class CleanerController extends AbstractController
             $arr_errors = $validator->validate($cleaner);
             if (count($arr_errors) > 0)
             {
-                return $this->showDanger($arr_errors);
+                return $this->showDanger($arr_errors, '/admin/cleaner/create');
             }
             else
             {
@@ -97,7 +97,7 @@ class CleanerController extends AbstractController
             $arr_errors = $validator->validate($cleaner);
             if (count($arr_errors) > 0)
             {
-                return $this->showDanger($arr_errors);
+                return $this->showDanger($arr_errors, "/admin/cleaner/edit/$id");
             }
             else
             {
@@ -120,7 +120,7 @@ class CleanerController extends AbstractController
      *
      * @return Response
      */
-    private function showDanger($arr_errors)
+    private function showDanger($arr_errors, $back)
     {
         $errors = [];
 
@@ -130,7 +130,7 @@ class CleanerController extends AbstractController
         }
         return $this->render('validation.html.twig', [
             'errors' => $errors,
-            'back' => '/admin/cleaner/create'
+            'back' => $back
         ]);
     }
 }

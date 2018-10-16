@@ -193,7 +193,7 @@ class BookingController extends AbstractController
     /**
      * @Route("/admin/booking/edit/{id}", methods={"GET", "POST"}, name="admin_booking_edit")
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request, ValidatorInterface $validator, $id)
     {
         if($request->isMethod('POST'))
         {
@@ -214,9 +214,17 @@ class BookingController extends AbstractController
 
             $booking->setDuration($request->request->get('duration'));
 
-            $entityManager->flush();
+            $arr_errors = $validator->validate($booking);
 
-            return $this->redirectToRoute('admin_booking_index');
+            if (count($arr_errors) > 0)
+            {
+                return $this->showDanger($arr_errors, '/admin/booking/edit/' . $id);
+            }
+            else
+            {
+                $entityManager->flush();
+                return $this->redirectToRoute('admin_booking_index');
+            }
         }
 
         $booking = $this->getDoctrine()->getRepository(Booking::class)->find($id);
@@ -233,6 +241,25 @@ class BookingController extends AbstractController
             'booking'   => $booking,
             'date'      => $date,
             'cleaners'  => $cleaners
+        ]);
+    }
+
+    /**
+     * @param array of errors
+     *
+     * @return Response
+     */
+    private function showDanger($arr_errors, $back)
+    {
+        $errors = [];
+
+        foreach($arr_errors as $error)
+        {
+            $errors[] = strtoupper($error->getPropertyPath()) . ' => ' . $error->getMessage();
+        }
+        return $this->render('validation.html.twig', [
+            'errors' => $errors,
+            'back' => $back
         ]);
     }
 }
