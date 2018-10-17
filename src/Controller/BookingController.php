@@ -13,10 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
+/**
+ * Class BookingController
+ * @package App\Controller
+ */
 class BookingController extends AbstractController
 {
     /**
      * @Route("/booking/create/select_params", methods={"GET","POST"}, name="select_params")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function selectParams(Request $request)
     {
@@ -55,6 +62,9 @@ class BookingController extends AbstractController
 
     /**
      * @Route("/booking/create/select_cleaner", methods={"GET","POST"}, name="select_cleaner")
+     *
+     * @return Response
+     * @throws \Exception
      */
     public function selectCleaner()
     {
@@ -107,6 +117,9 @@ class BookingController extends AbstractController
 
     /**
      * @Route("/booking/create/finish", methods={"GET", "POST"}, name="create_booking")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function create(Request $request)
     {
@@ -143,9 +156,12 @@ class BookingController extends AbstractController
     }
 
 
-//======= admin ========//
+//======= admin/ ========//
+
     /**
      * @Route("/admin/booking/index", name="admin_booking_index")
+     *
+     * @return Response
      */
     public function index()
     {
@@ -161,6 +177,8 @@ class BookingController extends AbstractController
 
     /**
      * @Route("/admin/booking/index/actual", name="admin_booking_index_actual")
+     *
+     * @return Response
      */
     public function indexActual()
     {
@@ -176,6 +194,9 @@ class BookingController extends AbstractController
 
     /**
      * @Route("/admin/booking/delete/{id}", methods={"DELETE"}, name="admin_booking_delete")
+     *
+     * @param Request $request
+     * @param $id
      */
     public function delete(Request $request, $id)
     {
@@ -192,6 +213,11 @@ class BookingController extends AbstractController
 
     /**
      * @Route("/admin/booking/edit/{id}", methods={"GET", "POST"}, name="admin_booking_edit")
+     *
+     * @param Request $request
+     * @param ValidatorInterface $validator
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function edit(Request $request, ValidatorInterface $validator, $id)
     {
@@ -245,11 +271,13 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @param array of errors
+     * Redirect to page with errors
      *
+     * @param array $arr_errors
+     * @param string $back
      * @return Response
      */
-    private function showDanger($arr_errors, $back)
+    private function showDanger($arr_errors, string $back)
     {
         $errors = [];
 
